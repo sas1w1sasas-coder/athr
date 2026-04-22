@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold-50: #faf6ef;
+  --color-gold-100: #f0e6d3;
+  --color-gold-200: #e4d0b0;
+  --color-gold-300: #d4b382;
+  --color-gold-400: #c9a96e;
+  --color-gold-500: #b08d4b;
+  --color-gold-600: #9a783f;
+  --color-gold-700: #7f6135;
+  --color-gold-800: #68502f;
+  --color-gold-900: #56432a;
+
+  --color-brown-50: #f9f6f2;
+  --color-brown-100: #efe8de;
+  --color-brown-200: #e0d0c0;
+  --color-brown-300: #ccb296;
+  --color-brown-400: #b89672;
+  --color-brown-500: #a87e58;
+  --color-brown-600: #9c6f4e;
+  --color-brown-700: #825a41;
+  --color-brown-800: #6b4b39;
+  --color-brown-900: #573e31;
+
+  --color-dark-900: #0a0a0a;
+  --color-dark-800: #111111;
+  --color-dark-700: #1a1a1a;
+  --color-dark-600: #222222;
+  --color-dark-500: #2a2a2a;
+
+  --font-serif: 'Amiri', 'Times New Roman', serif;
+  --font-sans: 'Tajawal', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Tajawal', system-ui, sans-serif;
+  background-color: #0a0a0a;
+  color: #f5f0e8;
+  overflow-x: hidden;
+}
+
+.font-serif {
+  font-family: 'Amiri', 'Times New Roman', serif;
+}
+
+.font-sans {
+  font-family: 'Tajawal', system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9a96e;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4b382;
+}
+
+/* Text selection */
+::selection {
+  background-color: rgba(201, 169, 110, 0.3);
+  color: #f5f0e8;
+}
+
+/* Gold gradient text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #d4b382 0%, #c9a96e 50%, #b08d4b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle noise texture overlay */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Gold border glow */
+.gold-border-glow {
+  box-shadow: 0 0 20px rgba(201, 169, 110, 0.15), inset 0 0 20px rgba(201, 169, 110, 0.05);
+}
+
+/* Hero background gradient */
+.hero-gradient {
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1209 40%, #0a0a0a 100%);
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(201, 169, 110, 0.3) 50%, transparent 100%);
+}
+
+/* Card hover lift */
+.card-lift {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(201, 169, 110, 0.08);
+}
+
+/* Image zoom on hover */
+.img-zoom {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.img-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* Button shine effect */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-shine:hover::after {
+  transform: rotate(30deg) translateX(100%);
+}
+
+/* FAQ accordion animation */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+/* Input focus styles */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #c9a96e;
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
+}
+
+/* Mobile menu animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu-enter {
+  animation: slideDown 0.3s ease forwards;
+}
