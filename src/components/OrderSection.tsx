@@ -34,9 +34,9 @@ export default function OrderSection({ cart, setCart, whatsappNumber, onSubmitOr
       items: orderItems,
     });
 
-    const productsText = cart.length > 0 ? cart.map((p) => `- ${p.name} (${p.size}) - ${p.price.toLocaleString("ar-SA")} ر.س`).join("\n") : "لم يتم اختيار منتجات بعد";
+    const productsText = cart.length > 0 ? cart.map((p) => `- ${p.name} (${p.size}) - ${p.price.toLocaleString("ar-EG")} ج.م`).join("\n") : "لم يتم اختيار منتجات بعد";
     const total = cart.reduce((sum, p) => sum + p.price, 0);
-    const message = `طلب جديد من متجر أثر\n\nرقم الطلب: ${result.orderId}\nالاسم: ${formData.name}\nرقم الهاتف: ${formData.phone}\nالمدينة: ${formData.city}\nطريقة الدفع: ${paymentMethods.find((m) => m.id === formData.paymentMethod)?.label}\n\nالمنتجات:\n${productsText}\n\nالإجمالي: ${total.toLocaleString("ar-SA")} ر.س\n\nملاحظات: ${formData.notes || "لا توجد ملاحظات"}`;
+    const message = `طلب جديد من متجر أثر\n\nرقم الطلب: ${result.orderId}\nالاسم: ${formData.name}\nرقم الهاتف: ${formData.phone}\nالمدينة: ${formData.city}\nطريقة الدفع: ${paymentMethods.find((m) => m.id === formData.paymentMethod)?.label}\n\nالمنتجات:\n${productsText}\n\nالإجمالي: ${total.toLocaleString("ar-EG")} ج.م\n\nملاحظات: ${formData.notes || "لا توجد ملاحظات"}`;
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/${whatsappNumber.replace(/\D/g, "")}?text=${encodedMessage}`, "_blank");
     setCart([]);
@@ -64,11 +64,11 @@ export default function OrderSection({ cart, setCart, whatsappNumber, onSubmitOr
                 {cart.map((product) => (
                   <div key={product.id} className="flex items-center justify-between bg-dark-800/60 border border-gold-400/10 rounded-sm p-3">
                     <div className="flex items-center gap-3"><img src={product.image} alt={product.name} className="w-12 h-12 object-cover rounded-sm" /><div><div className="text-sm font-bold text-beige-100">{product.name}</div><div className="text-xs text-beige-200/50">{product.size}</div></div></div>
-                    <div className="flex items-center gap-4"><span className="text-sm font-bold text-gold-400">{product.price.toLocaleString("ar-SA")} ر.س</span><button onClick={() => removeFromCart(product.id)} className="text-xs text-beige-200/40 hover:text-red-400 transition-colors px-2 py-1">إزالة</button></div>
+                    <div className="flex items-center gap-4"><span className="text-sm font-bold text-gold-400">{product.price.toLocaleString("ar-EG")} ج.م</span><button onClick={() => removeFromCart(product.id)} className="text-xs text-beige-200/40 hover:text-red-400 transition-colors px-2 py-1">إزالة</button></div>
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between items-center mt-4 pt-4 border-t border-gold-400/10"><span className="text-sm text-beige-200/70">الإجمالي</span><span className="font-serif text-xl font-bold text-gold-400">{total.toLocaleString("ar-SA")} ر.س</span></div>
+              <div className="flex justify-between items-center mt-4 pt-4 border-t border-gold-400/10"><span className="text-sm text-beige-200/70">الإجمالي</span><span className="font-serif text-xl font-bold text-gold-400">{total.toLocaleString("ar-EG")} ج.م</span></div>
             </div>
           )}
 
@@ -104,3 +104,4 @@ export default function OrderSection({ cart, setCart, whatsappNumber, onSubmitOr
     </section>
   );
 }
+

@@ -85,7 +85,7 @@ export default function CartSidebar({ isOpen, onClose, cart, setCart }: CartSide
                         <p className="text-xs text-beige-200/40 mt-1">{product.size}</p>
                         <div className="flex items-center justify-between mt-2">
                           <span className="text-sm font-bold text-gold-400">
-                            {product.price.toLocaleString("ar-SA")} ر.س
+                            {product.price.toLocaleString("ar-EG")} ج.م
                           </span>
                           <button
                             onClick={() => removeFromCart(product.id)}
@@ -106,7 +106,7 @@ export default function CartSidebar({ isOpen, onClose, cart, setCart }: CartSide
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-beige-200/70 text-sm">الإجمالي</span>
                   <span className="font-serif text-2xl font-bold text-gold-400">
-                    {total.toLocaleString("ar-SA")} ر.س
+                    {total.toLocaleString("ar-EG")} ج.م
                   </span>
                 </div>
                 <button
@@ -130,3 +130,4 @@ export default function CartSidebar({ isOpen, onClose, cart, setCart }: CartSide
     </AnimatePresence>
   );
 }
+

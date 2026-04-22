@@ -111,9 +111,9 @@ export default function ProductModal({ product, onClose, inCart, onAddToCart }: 
                 <div className="flex items-center justify-between mb-6 pt-4 border-t border-gold-400/10">
                   <div>
                     <span className="font-serif text-3xl font-bold text-gold-400">
-                      {product.price.toLocaleString("ar-SA")}
+                      {product.price.toLocaleString("ar-EG")}
                     </span>
-                    <span className="text-sm text-beige-200/50 mr-2">ر.س</span>
+                    <span className="text-sm text-beige-200/50 mr-2">ج.م</span>
                   </div>
                   <span className="text-sm text-beige-200/50 border border-beige-200/20 px-3 py-1.5 rounded-sm">
                     {product.size}
@@ -159,3 +159,4 @@ export default function ProductModal({ product, onClose, inCart, onAddToCart }: 
     </AnimatePresence>
   );
 }
+

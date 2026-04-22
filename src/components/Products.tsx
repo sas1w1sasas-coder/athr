@@ -21,7 +21,7 @@ const ui = {
   viewCart: "\u0639\u0631\u0636 \u0627\u0644\u0633\u0644\u0629",
   noImage: "\u0644\u0627 \u062a\u0648\u062c\u062f \u0635\u0648\u0631\u0629",
   viewDetails: "\u0639\u0631\u0636 \u0627\u0644\u062a\u0641\u0627\u0635\u064a\u0644",
-  currency: "\u0631.\u0633",
+  currency: "\u062c.\u0645",
   added: "\u062a\u0645\u062a \u0627\u0644\u0625\u0636\u0627\u0641\u0629",
   addToOrder: "\u0623\u0636\u0641 \u0644\u0644\u0637\u0644\u0628",
 };
@@ -122,7 +122,7 @@ export default function Products({ products, cart, setCart, onOpenProduct, onOpe
                     </div>
                     <p className="text-sm text-beige-200/60 leading-relaxed mb-5 line-clamp-2 flex-1">{product.description}</p>
                     <div className="flex items-center justify-between gap-4">
-                      <div><span className="font-serif text-2xl font-bold text-gold-400">{product.price.toLocaleString("ar-SA")}</span><span className="text-sm text-beige-200/50 mr-1">{ui.currency}</span></div>
+                      <div><span className="font-serif text-2xl font-bold text-gold-400">{product.price.toLocaleString("ar-EG")}</span><span className="text-sm text-beige-200/50 mr-1">{ui.currency}</span></div>
                       <button onClick={() => addToCart(product)} disabled={addedIds.has(product.id)} className={`btn-shine inline-flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm font-bold transition-all duration-300 ${addedIds.has(product.id) ? "bg-green-500/20 text-green-400 border border-green-500/30" : "bg-gold-500 hover:bg-gold-400 text-dark-900"}`}>
                         {addedIds.has(product.id) ? <><Check className="w-4 h-4" />{ui.added}</> : <><Plus className="w-4 h-4" />{ui.addToOrder}</>}
                       </button>
@@ -137,3 +137,4 @@ export default function Products({ products, cart, setCart, onOpenProduct, onOpe
     </section>
   );
 }
+
