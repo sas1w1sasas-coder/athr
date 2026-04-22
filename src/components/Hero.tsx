@@ -63,9 +63,19 @@ export default function Hero({ whatsappNumber }: { whatsappNumber: string }) {
           <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, ease: "easeOut", delay: 0.3 }} className="relative order-1 lg:order-2">
             <div className="relative aspect-[4/5] max-w-md mx-auto lg:max-w-none">
               <div className="absolute inset-0 bg-gradient-to-t from-gold-500/10 via-transparent to-transparent rounded-lg blur-xl" />
-              <div className="relative overflow-hidden rounded-lg border border-gold-400/10 gold-border-glow">
-                <img src="/images/hero-perfume.jpg" alt="زجاجة عطر فاخرة من أثر" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
+              <div className="relative overflow-hidden rounded-lg border border-gold-400/10 gold-border-glow bg-[#0b0907]">
+                <video
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  poster="/images/hero-perfume.jpg"
+                  preload="metadata"
+                >
+                  <source src="/videos/hero-perfume.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/65 via-dark-900/10 to-transparent pointer-events-none" />
               </div>
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1, duration: 0.6 }} className="absolute -left-4 sm:-left-6 bottom-1/4 bg-dark-800/95 backdrop-blur-sm border border-gold-400/20 rounded-sm px-4 py-3 shadow-xl">
                 <div className="text-xs text-gold-400 mb-1">الأكثر طلبًا</div>
