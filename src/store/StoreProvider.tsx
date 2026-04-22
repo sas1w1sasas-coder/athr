@@ -191,11 +191,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         supabase.auth.getSession(),
       ]);
 
-      if (Array.isArray(productRows) && productRows.length > 0) {
+      if (Array.isArray(productRows)) {
         setAdminProducts(productRows.map(mapProductRow));
       }
 
-      if (Array.isArray(orderRows) && orderRows.length > 0) {
+      if (Array.isArray(orderRows)) {
         setOrders(orderRows.map(mapOrderRow));
       }
 
