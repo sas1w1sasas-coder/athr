@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @theme {
   --color-gold-50: #faf6ef;
@@ -35,13 +35,19 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body,
+#root {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   font-family: 'Tajawal', system-ui, sans-serif;
   background-color: #0a0a0a;
   color: #f5f0e8;
-  overflow-x: hidden;
 }
 
 .font-serif {
@@ -52,7 +58,6 @@ body {
   font-family: 'Tajawal', system-ui, sans-serif;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -70,13 +75,11 @@ body {
   background: #d4b382;
 }
 
-/* Text selection */
 ::selection {
   background-color: rgba(201, 169, 110, 0.3);
   color: #f5f0e8;
 }
 
-/* Gold gradient text */
 .text-gold-gradient {
   background: linear-gradient(135deg, #d4b382 0%, #c9a96e 50%, #b08d4b 100%);
   -webkit-background-clip: text;
@@ -84,7 +87,6 @@ body {
   background-clip: text;
 }
 
-/* Subtle noise texture overlay */
 .noise-overlay {
   position: relative;
 }
@@ -98,23 +100,19 @@ body {
   z-index: 1;
 }
 
-/* Gold border glow */
 .gold-border-glow {
   box-shadow: 0 0 20px rgba(201, 169, 110, 0.15), inset 0 0 20px rgba(201, 169, 110, 0.05);
 }
 
-/* Hero background gradient */
 .hero-gradient {
   background: linear-gradient(180deg, #0a0a0a 0%, #1a1209 40%, #0a0a0a 100%);
 }
 
-/* Section divider */
 .section-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, rgba(201, 169, 110, 0.3) 50%, transparent 100%);
 }
 
-/* Card hover lift */
 .card-lift {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
 }
@@ -124,7 +122,6 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(201, 169, 110, 0.08);
 }
 
-/* Image zoom on hover */
 .img-zoom {
   transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -133,7 +130,6 @@ body {
   transform: scale(1.05);
 }
 
-/* Button shine effect */
 .btn-shine {
   position: relative;
   overflow: hidden;
@@ -146,12 +142,7 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
   transform: rotate(30deg) translateX(-100%);
   transition: transform 0.6s ease;
 }
@@ -160,20 +151,19 @@ body {
   transform: rotate(30deg) translateX(100%);
 }
 
-/* FAQ accordion animation */
 .accordion-content {
   overflow: hidden;
   transition: max-height 0.4s ease, opacity 0.3s ease;
 }
 
-/* Input focus styles */
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   border-color: #c9a96e;
   box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.15);
 }
 
-/* Mobile menu animation */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -187,4 +177,19 @@ input:focus, textarea:focus, select:focus {
 
 .mobile-menu-enter {
   animation: slideDown 0.3s ease forwards;
+}
+
+@media (max-width: 767px) {
+  .noise-overlay::before {
+    opacity: 0.015;
+  }
+
+  .card-lift:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .img-zoom:hover {
+    transform: none;
+  }
 }

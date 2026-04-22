@@ -47,7 +47,7 @@ export default function OrderSection({ cart, setCart, whatsappNumber, onSubmitOr
 
   return (
     <section id="order" className="relative py-20 sm:py-28 bg-dark-800 noise-overlay">
-      <div className="absolute inset-0 pointer-events-none"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/3 rounded-full blur-3xl" /></div>
+      <div className="absolute inset-0 pointer-events-none"><div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] sm:w-[600px] sm:h-[600px] bg-gold-500/3 rounded-full blur-3xl" /></div>
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }} className="text-center mb-16">
           <span className="inline-block text-sm text-gold-400 tracking-widest mb-3 font-medium">طلب يدوي مباشر</span>
@@ -77,7 +77,7 @@ export default function OrderSection({ cart, setCart, whatsappNumber, onSubmitOr
             <div><label className="block text-sm font-medium text-beige-200/80 mb-2">رقم الهاتف <span className="text-gold-400">*</span></label><input type="tel" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} placeholder="05xxxxxxxx" className="w-full px-4 py-3 bg-dark-800 border border-gold-400/15 rounded-sm text-beige-100 placeholder:text-beige-200/30 text-sm transition-all duration-300" /></div>
           </div>
 
-          <div className="mb-6"><label className="block text-sm font-medium text-beige-200/80 mb-2">المدينة <span className="text-gold-400">*</span></label><input type="text" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} placeholder="مثال: الرياض أو جدة أو الدمام" className="w-full px-4 py-3 bg-dark-800 border border-gold-400/15 rounded-sm text-beige-100 placeholder:text-beige-200/30 text-sm transition-all duration-300" /></div>
+          <div className="mb-6"><label className="block text-sm font-medium text-beige-200/80 mb-2">المدينة <span className="text-gold-400">*</span></label><input type="text" value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} placeholder="مثال: القاهرة أو الإسكندرية أو الجيزة" className="w-full px-4 py-3 bg-dark-800 border border-gold-400/15 rounded-sm text-beige-100 placeholder:text-beige-200/30 text-sm transition-all duration-300" /></div>
 
           <div className="mb-6">
             <label className="block text-sm font-medium text-beige-200/80 mb-3">طريقة الدفع <span className="text-gold-400">*</span></label>
@@ -104,4 +104,5 @@ export default function OrderSection({ cart, setCart, whatsappNumber, onSubmitOr
     </section>
   );
 }
+
 

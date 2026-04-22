@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react'
+﻿import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
@@ -25,7 +25,6 @@ function Particles() {
     ]
 
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-      // Spread particles in a wide volume
       positions[i * 3] = (Math.random() - 0.5) * 18
       positions[i * 3 + 1] = (Math.random() - 0.5) * 14
       positions[i * 3 + 2] = (Math.random() - 0.5) * 12 - 2
@@ -53,10 +52,9 @@ function Particles() {
     if (!meshRef.current) return
 
     const time = state.clock.elapsedTime
-    const mx = (state.mouse.x * 0.5)
-    const my = (state.mouse.y * 0.3)
+    const mx = state.mouse.x * 0.5
+    const my = state.mouse.y * 0.3
 
-    // Smooth mouse following
     mouseRef.current.x += (mx - mouseRef.current.x) * 0.02
     mouseRef.current.y += (my - mouseRef.current.y) * 0.02
 
@@ -67,31 +65,22 @@ function Particles() {
       const phaseY = phases[i3 + 1]
       const phaseZ = phases[i3 + 2]
 
-      // Gentle floating motion like perfume mist
       const floatX = Math.sin(time * speed * 0.4 + phase) * 0.8
       const floatY = Math.cos(time * speed * 0.3 + phaseY) * 0.5 + Math.sin(time * 0.15 + phaseY) * 0.3
       const floatZ = Math.sin(time * speed * 0.25 + phaseZ) * 0.4
-
-      // Breathing scale effect
       const breathe = 1 + Math.sin(time * 0.5 + phase) * 0.15
 
       dummy.position.set(
         positions[i3] + floatX + mouseRef.current.x * (0.5 + i * 0.002),
         positions[i3 + 1] + floatY + mouseRef.current.y * (0.3 + i * 0.002),
-        positions[i3 + 2] + floatZ
+        positions[i3 + 2] + floatZ,
       )
 
       dummy.scale.setScalar(sizes[i] * breathe)
-      dummy.rotation.set(
-        time * 0.1 + phase,
-        time * 0.15 + phaseY,
-        time * 0.08 + phaseZ
-      )
-
+      dummy.rotation.set(time * 0.1 + phase, time * 0.15 + phaseY, time * 0.08 + phaseZ)
       dummy.updateMatrix()
       meshRef.current.setMatrixAt(i, dummy.matrix)
 
-      // Subtle color pulse
       const pulse = 0.85 + Math.sin(time * 0.4 + phase) * 0.15
       colorHelper.setRGB(colors[i3] * pulse, colors[i3 + 1] * pulse, colors[i3 + 2] * pulse)
       meshRef.current.setColorAt(i, colorHelper)
@@ -106,14 +95,7 @@ function Particles() {
   return (
     <instancedMesh ref={meshRef} args={[undefined, undefined, PARTICLE_COUNT]}>
       <sphereGeometry args={[1, 16, 16]} />
-      <meshStandardMaterial
-        transparent
-        opacity={0.6}
-        roughness={0.4}
-        metalness={0.6}
-        emissive="#c9a96e"
-        emissiveIntensity={0.15}
-      />
+      <meshStandardMaterial transparent opacity={0.6} roughness={0.4} metalness={0.6} emissive="#c9a96e" emissiveIntensity={0.15} />
     </instancedMesh>
   )
 }
@@ -133,13 +115,7 @@ function FloatingRings() {
       {[0, 1, 2].map((i) => (
         <mesh key={i} rotation={[Math.PI / 2, 0, 0]} position={[0, 0, -3 - i * 2]}>
           <torusGeometry args={[3 + i * 1.5, 0.015, 8, 100]} />
-          <meshStandardMaterial
-            color="#c9a96e"
-            transparent
-            opacity={0.12 - i * 0.03}
-            emissive="#c9a96e"
-            emissiveIntensity={0.3}
-          />
+          <meshStandardMaterial color="#c9a96e" transparent opacity={0.12 - i * 0.03} emissive="#c9a96e" emissiveIntensity={0.3} />
         </mesh>
       ))}
     </group>
@@ -158,16 +134,28 @@ function AmbientLightRig() {
 }
 
 export default function PerfumeParticles() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const media = window.matchMedia('(max-width: 767px)')
+    const handleChange = () => setIsMobile(media.matches)
+    handleChange()
+    media.addEventListener('change', handleChange)
+    return () => media.removeEventListener('change', handleChange)
+  }, [])
+
+  if (isMobile) {
+    return null
+  }
+
   return (
-    <div className="absolute inset-0 z-0">
+    <div className="absolute inset-0 z-0 overflow-hidden">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 55 }}
         dpr={[1, 1.5]}
-        gl={{
-          antialias: true,
-          alpha: true,
-          powerPreference: 'high-performance',
-        }}
+        gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         style={{ background: 'transparent' }}
       >
         <AmbientLightRig />
