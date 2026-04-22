@@ -1,6 +1,6 @@
-ï»¿import { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Check, ShoppingBag, Eye } from "lucide-react";
+import { Plus, Check, ShoppingBag, Eye, Image as ImageIcon } from "lucide-react";
 import type { Product } from "../data/products";
 
 interface ProductsProps {
@@ -40,7 +40,7 @@ export default function Products({ products, cart, setCart, onOpenProduct, onOpe
       return [...prev, product];
     });
     setAddedIds((prev) => new Set(prev).add(product.id));
-    onToast(`ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© \"${product.name}\" Ø¥Ù„Ù‰ Ø§Ù„Ø·Ù„Ø¨`, "success");
+    onToast(`ÊãÊ ÅÖÇİÉ \"${product.name}\" Åáì ÇáØáÈ`, "success");
     setTimeout(() => {
       setAddedIds((prev) => {
         const next = new Set(prev);
@@ -55,9 +55,9 @@ export default function Products({ products, cart, setCart, onOpenProduct, onOpe
       <div className="absolute inset-0 opacity-30 pointer-events-none"><div className="absolute top-0 right-0 w-full h-px bg-gradient-to-l from-transparent via-gold-400/20 to-transparent" /></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.7 }} className="text-center mb-16">
-          <span className="inline-block text-sm text-gold-400 tracking-widest mb-3 font-medium">Ø§Ù„ØªØ´ÙƒÙŠÙ„Ø© Ø§Ù„Ù…Ø®ØªØ§Ø±Ø©</span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-beige-100 mb-4">Ù…Ø¬Ù…ÙˆØ¹Ø© Ø§Ù„Ø¹Ø·ÙˆØ±</h2>
-          <p className="text-beige-200/60 max-w-2xl mx-auto text-base leading-relaxed">Ø¨Ø§Ù‚Ø© Ù…Ù† Ø§Ù„Ø¹Ø·ÙˆØ± Ø§Ù„Ø´Ø±Ù‚ÙŠØ© ÙˆØ§Ù„ÙØ±Ù†Ø³ÙŠØ© Ø¨Ø·Ø§Ø¨Ø¹ ÙØ§Ø®Ø±ØŒ Ù…Ù†Ø§Ø³Ø¨Ø© Ù„Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„ÙŠÙˆÙ…ÙŠ ÙˆØ§Ù„Ù‡Ø¯Ø§ÙŠØ§ ÙˆØ§Ù„Ø·Ù„Ø¨Ø§Øª Ø§Ù„Ø®Ø§ØµØ©.</p>
+          <span className="inline-block text-sm text-gold-400 tracking-widest mb-3 font-medium">ÇáÊÔßíáÉ ÇáãÎÊÇÑÉ</span>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-beige-100 mb-4">ãÌãæÚÉ ÇáÚØæÑ</h2>
+          <p className="text-beige-200/60 max-w-2xl mx-auto text-base leading-relaxed">ÈÇŞÉ ãä ÇáÚØæÑ ÇáÔÑŞíÉ æÇáİÑäÓíÉ ÈØÇÈÚ İÇÎÑ¡ ãäÇÓÈÉ ááÇÓÊÎÏÇã Çáíæãí æÇáåÏÇíÇ æÇáØáÈÇÊ ÇáÎÇÕÉ.</p>
           <div className="w-24 h-px bg-gradient-to-l from-transparent via-gold-400 to-transparent mx-auto mt-6" />
         </motion.div>
 
@@ -69,11 +69,11 @@ export default function Products({ products, cart, setCart, onOpenProduct, onOpe
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-gold-500/10 rounded-full flex items-center justify-center"><ShoppingBag className="w-5 h-5 text-gold-400" /></div>
                     <div>
-                      <div className="text-sm text-beige-200/80">Ù…Ù†ØªØ¬Ø§ØªÙƒ Ø§Ù„Ù…Ø®ØªØ§Ø±Ø©: <span className="text-gold-400 font-bold">{cart.length}</span></div>
-                      <div className="text-xs text-beige-200/50">{cart.map((p) => p.name).join("ØŒ ")}</div>
+                      <div className="text-sm text-beige-200/80">ãäÊÌÇÊß ÇáãÎÊÇÑÉ: <span className="text-gold-400 font-bold">{cart.length}</span></div>
+                      <div className="text-xs text-beige-200/50">{cart.map((p) => p.name).join("¡ ")}</div>
                     </div>
                   </div>
-                  <button onClick={onOpenCart} className="btn-shine px-6 py-2.5 bg-gold-500 hover:bg-gold-400 text-dark-900 text-sm font-bold rounded-sm transition-colors whitespace-nowrap">Ø¹Ø±Ø¶ Ø§Ù„Ø³Ù„Ø©</button>
+                  <button onClick={onOpenCart} className="btn-shine px-6 py-2.5 bg-gold-500 hover:bg-gold-400 text-dark-900 text-sm font-bold rounded-sm transition-colors whitespace-nowrap">ÚÑÖ ÇáÓáÉ</button>
                 </div>
               </div>
             </motion.div>
@@ -85,11 +85,18 @@ export default function Products({ products, cart, setCart, onOpenProduct, onOpe
             <motion.div key={product.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-50px" }} transition={{ duration: 0.6, delay: index * 0.08 }} className="group">
               <TiltCard className="h-full">
                 <div className="card-lift bg-dark-800/40 border border-gold-400/10 rounded-sm overflow-hidden hover:border-gold-400/25 transition-all duration-500 h-full flex flex-col">
-                  <div className="relative aspect-square overflow-hidden bg-dark-700 cursor-pointer" onClick={() => onOpenProduct(product)}>
-                    <img src={product.image} alt={product.name} className="w-full h-full object-cover img-zoom" />
+                  <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-dark-700 via-dark-800 to-[#16110a] cursor-pointer flex items-center justify-center" onClick={() => onOpenProduct(product)}>
+                    {product.image ? (
+                      <img src={product.image} alt={product.name} className="w-full h-full object-cover object-center img-zoom" />
+                    ) : (
+                      <div className="flex flex-col items-center gap-2 text-beige-200/50">
+                        <ImageIcon className="w-8 h-8" />
+                        <span className="text-sm">áÇ ÊæÌÏ ÕæÑÉ</span>
+                      </div>
+                    )}
                     {product.badge && <div className="absolute top-4 right-4"><span className={`inline-block px-3 py-1 text-xs font-bold text-white rounded-sm ${product.badgeColor || "bg-gold-500"}`}>{product.badge}</span></div>}
-                    <div className="absolute inset-0 bg-dark-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"><span className="inline-flex items-center gap-2 px-4 py-2 bg-dark-900/80 border border-gold-400/30 text-gold-400 text-sm rounded-sm backdrop-blur-sm"><Eye className="w-4 h-4" />Ø¹Ø±Ø¶ Ø§Ù„ØªÙØ§ØµÙŠÙ„</span></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-dark-900/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"><span className="inline-flex items-center gap-2 px-4 py-2 bg-dark-900/80 border border-gold-400/30 text-gold-400 text-sm rounded-sm backdrop-blur-sm"><Eye className="w-4 h-4" />ÚÑÖ ÇáÊİÇÕíá</span></div>
+                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-dark-900/85 via-dark-900/15 to-transparent opacity-90 transition-opacity duration-500" />
                   </div>
                   <div className="p-5 sm:p-6 flex flex-col flex-1">
                     <div className="flex items-start justify-between gap-3 mb-2">
@@ -101,9 +108,9 @@ export default function Products({ products, cart, setCart, onOpenProduct, onOpe
                     </div>
                     <p className="text-sm text-beige-200/60 leading-relaxed mb-5 line-clamp-2 flex-1">{product.description}</p>
                     <div className="flex items-center justify-between gap-4">
-                      <div><span className="font-serif text-2xl font-bold text-gold-400">{product.price.toLocaleString("ar-SA")}</span><span className="text-sm text-beige-200/50 mr-1">Ø±.Ø³</span></div>
+                      <div><span className="font-serif text-2xl font-bold text-gold-400">{product.price.toLocaleString("ar-SA")}</span><span className="text-sm text-beige-200/50 mr-1">Ñ.Ó</span></div>
                       <button onClick={() => addToCart(product)} disabled={addedIds.has(product.id)} className={`btn-shine inline-flex items-center gap-2 px-4 py-2.5 rounded-sm text-sm font-bold transition-all duration-300 ${addedIds.has(product.id) ? "bg-green-500/20 text-green-400 border border-green-500/30" : "bg-gold-500 hover:bg-gold-400 text-dark-900"}`}>
-                        {addedIds.has(product.id) ? <><Check className="w-4 h-4" />ØªÙ…Øª Ø§Ù„Ø¥Ø¶Ø§ÙØ©</> : <><Plus className="w-4 h-4" />Ø£Ø¶Ù Ù„Ù„Ø·Ù„Ø¨</>}
+                        {addedIds.has(product.id) ? <><Check className="w-4 h-4" />ÊãÊ ÇáÅÖÇİÉ</> : <><Plus className="w-4 h-4" />ÃÖİ ááØáÈ</>}
                       </button>
                     </div>
                   </div>
